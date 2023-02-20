@@ -8,5 +8,11 @@ public class TestaMetodo {
 
         contaBancaria1.consultaSaldo();
 
+        Conta contaBancaria2 = new Conta();
+        contaBancaria2.deposita(new BigDecimal(1000));
+
+        contaBancaria2.saca(new BigDecimal(100));
+//        contaBancaria2.consultaSaldo();
+
     }
 }
