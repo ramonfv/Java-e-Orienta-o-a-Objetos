@@ -1,4 +1,8 @@
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class TestaMetodo {
     public static void main(String[] args) {
@@ -12,7 +16,12 @@ public class TestaMetodo {
         contaBancaria2.deposita(new BigDecimal(1000));
 
         contaBancaria2.saca(new BigDecimal(100));
-//        contaBancaria2.consultaSaldo();
+        contaBancaria2.consultaSaldo();
+
+        contaBancaria2.transfere(new BigDecimal(387), contaBancaria1);
+
+        contaBancaria2.consultaSaldo();
+
 
     }
 }
