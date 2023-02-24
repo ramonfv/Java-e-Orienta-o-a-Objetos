@@ -3,5 +3,13 @@ public class TestaGetESet {
         Conta conta = new Conta();
         conta.setNumero(1337);
 
+        Cliente jade = new Cliente();
+        conta.setTitular(jade);
+
+        jade.setNome("Jade do pai dela");
+        System.out.println("O nome do titular da conta é " + conta.getTitular().getNome());
+        conta.getTitular().setProfissao("Herdeira");
+        System.out.println("Qual a profissão do cliente " + conta.getTitular().getNome() +
+                            "? " + conta.getTitular().getProfissao());
     }
 }
