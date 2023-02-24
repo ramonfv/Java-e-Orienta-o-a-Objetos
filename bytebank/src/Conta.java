@@ -4,10 +4,10 @@ import java.sql.*;
 
 
 public class Conta {
-    BigDecimal saldo;
+    private BigDecimal saldo;
     int agencia;
     int numero;
-    String titular;
+    Cliente titular;
 
 //    Método para depositar um valor a conta
     public BigDecimal deposita(BigDecimal valor) {
@@ -79,6 +79,10 @@ public class Conta {
             System.out.println("O valor socilitado não pode ser transferido");
         }
     return valor;
+    }
+
+    public void setSaldo(BigDecimal valor){
+        this.saldo = valor;
     }
 }
 
