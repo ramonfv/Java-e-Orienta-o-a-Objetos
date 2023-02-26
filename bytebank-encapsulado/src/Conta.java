@@ -8,7 +8,11 @@ public class Conta {
     private int agencia;
     private int numero;
     private Cliente titular;
+    public Conta(int agencia, int numero){
+        this.numero = numero;
+        this.agencia = agencia;
 
+    }
 //    Método para depositar um valor a conta
     public BigDecimal deposita(BigDecimal valor) {
         if (this.saldo == null) {
@@ -90,6 +94,11 @@ public class Conta {
     }
 
     public int setNumero(int numero){
+
+        if (numero <= 0){
+            System.out.println("Este número de contanão é válido!");
+            return numero;
+        }
         System.out.println("O número da sua conta foi alterado com sucesso. Seu número da conta é " + numero);
 
         return this.numero = numero;
@@ -100,6 +109,10 @@ public class Conta {
     }
 
     public void setAgencia(int agencia) {
+        if(agencia <= 0){
+            System.out.println("Este número de agência não é válido!");
+            return;
+        }
         this.agencia = agencia;
     }
 
