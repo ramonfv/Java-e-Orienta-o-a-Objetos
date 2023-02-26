@@ -8,7 +8,11 @@ public class Conta {
     private int agencia;
     private int numero;
     private Cliente titular;
+    private static int numeroDeContas;
+
+
     public Conta(int agencia, int numero){
+        Conta.numeroDeContas++;
         this.numero = numero;
         this.agencia = agencia;
 
@@ -122,6 +126,10 @@ public class Conta {
 
     public Cliente getTitular() {
         return titular;
+    }
+
+    public static int getNumeroDeContas(){
+        return Conta.numeroDeContas;
     }
 }
 

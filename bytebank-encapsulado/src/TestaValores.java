@@ -3,9 +3,11 @@ public class TestaValores {
         Conta conta = new Conta(1337, 256968);
 
 //        Conta inconsistente
-        conta.setAgencia(-50);
+//        conta.setAgencia(-50);
+
+        Conta contaBancariaDaJde = new Conta(2588, 66987);
 
 //
-        System.out.println(conta.getAgencia());
+        System.out.println(Conta.getNumeroDeContas());
     }
 }
