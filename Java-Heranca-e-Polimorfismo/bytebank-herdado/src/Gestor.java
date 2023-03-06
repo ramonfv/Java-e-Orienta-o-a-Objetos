@@ -15,4 +15,8 @@ public class Gestor extends Funcionario{
             return false;
         }
     }
+
+    public double getBonificacao() {
+        return super.getBonificacao() + super.getSalario();
+    }
 }

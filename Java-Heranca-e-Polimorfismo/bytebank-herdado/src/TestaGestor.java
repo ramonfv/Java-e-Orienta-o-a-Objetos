@@ -4,5 +4,7 @@ public class TestaGestor {
 
 
         System.out.println("O nome do gerente é " + gerente.getNome());
+        System.out.println(gerente.getBonificacao());
+
     }
 }

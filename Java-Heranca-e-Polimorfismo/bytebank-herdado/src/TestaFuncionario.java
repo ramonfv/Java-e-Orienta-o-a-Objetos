@@ -10,5 +10,7 @@ public class TestaFuncionario {
 
         Funcionario jade = new Funcionario("Jade Viana", "444.555.666.777-88", 15000.58);
         System.out.println("A bonificação da colaboradora " + jade.getNome() + " é R$ " + jade.getBonificacao());
+
+
     }
 }
