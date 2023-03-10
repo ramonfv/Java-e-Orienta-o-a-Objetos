@@ -1,12 +1,19 @@
-public class Gestor extends FuncionarioAutenticavel{
+public class Administrador extends FuncionarioAutenticavel{
 
     private int senha;
-
-    public Gestor(String nome, String cpf, double salario, int senha) {
+    public Administrador(String nome, String cpf, double salario, int senha){
         super(nome, cpf, salario, senha);
         this.senha = senha;
     }
 
+    @Override
+    public double getBonificacao() {
+        return 0;
+    }
+
+//    public void setSenha(int senha) {
+//        this.senha = senha;
+//    }
 
 //    public boolean autentica(int senha) {
 //        if (this.senha == senha) {
@@ -18,9 +25,4 @@ public class Gestor extends FuncionarioAutenticavel{
 //            return false;
 //        }
 //    }
-
-    public double getBonificacao() {
-
-        return super.getSalario();
-    }
 }
