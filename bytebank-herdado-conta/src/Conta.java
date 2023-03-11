@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.sql.*;
 
 
-public class Conta {
+public abstract class Conta {
     private BigDecimal saldo;
     private int agencia;
     private int numero;
