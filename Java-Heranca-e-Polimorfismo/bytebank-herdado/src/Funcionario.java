@@ -6,8 +6,10 @@ public abstract class Funcionario {
     private String cpf;
     private double salario;
 
+    private int senha;
 
-    public Funcionario(String nome, String cpf, double salario){
+
+    public Funcionario(String nome, String cpf, double salario, int senha){
 
 //        if (nome == null && cpf == null && salario <= 0) {
 //            throw new IllegalArgumentException("Nome, CPF e salário devem ser fornecidos.");
@@ -16,6 +18,8 @@ public abstract class Funcionario {
             this.nome = nome;
             this.cpf = cpf;
             this.salario = salario;
+            this.senha = senha;
+
 //        }
     }
 
@@ -46,7 +50,7 @@ public abstract class Funcionario {
         this.salario = salario;
     }
 
-
-
-
+    public int getSenha() {
+        return senha;
+    }
 }
