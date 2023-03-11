@@ -1,27 +1,31 @@
-public abstract class FuncionarioAutenticavel extends Funcionario {
+public class Cliente implements Autenticavel{
 
     private int senha;
+    private String nome;
+    private String identificador;
 
-    public FuncionarioAutenticavel(String nome, String cpf, double salario, int senha) {
-        super(nome, cpf, salario);
+    public Cliente(String nome, String identificador, int senha) {
+        this.nome = nome;
+        this.identificador = identificador;
         this.senha = senha;
     }
 
+    @Override
     public void setSenha(int senha) {
         this.senha = senha;
     }
 
+    @Override
     public boolean autentica(int senha) {
         if (this.senha == senha) {
             System.out.println("Autenticação realizada com sucesso!");
-
             return true;
-        } else {
+
+        }else {
             System.out.println("Senha incorreta.");
             return false;
-        }
+            }
     }
 
+
 }
-
-

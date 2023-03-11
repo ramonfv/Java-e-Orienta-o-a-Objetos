@@ -6,5 +6,8 @@ public class TestaGestor {
         System.out.println("O nome do gerente é " + gerente.getNome());
         System.out.println(gerente.getBonificacao());
 
+        boolean autentica = gerente.autentica(gerente.getSenha());
+        System.out.println(autentica);
+
     }
 }
