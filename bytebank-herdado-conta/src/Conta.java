@@ -11,12 +11,13 @@ public abstract class Conta {
     private static int numeroDeContas;
 
 
-    public Conta(int agencia, int numero){
+    public Conta(int agencia, int numero) {
         Conta.numeroDeContas++;
         this.numero = numero;
         this.agencia = agencia;
 
     }
+
     //    Método para depositar um valor a conta
     public BigDecimal deposita(BigDecimal valor) {
         if (this.saldo == null) {
@@ -31,75 +32,60 @@ public abstract class Conta {
     }
 
     //    Método para consultar o saldo da conta
-    public BigDecimal consultaSaldo(){
-        System.out.println("O saldo atual da sua conta: R$ " + this.saldo);
+    public BigDecimal consultaSaldo() {
+        System.out.println("Saldo atual da sua conta: R$ ");
         return this.saldo;
     }
 
     //    Método para sacar um valor da conta
-    public BigDecimal saca(BigDecimal valor){
+    public void saca(BigDecimal valor) throws SaldoInsuficienteException{
 //        if (this.saldo >= valor){ Obtive um erro de sintaxe, descobri que não é possível fazer comparações
 //        com variaveis do tupo BigDecimal utilizando (=, <, >) diretamente.
 //        Para tal, utilza-se o método  "compareTo" para fazer essa verificação. O retorno do método é um inteiro
 //        e assume um número negativo se o primeiro objeto for menor que o segundo, zero se forem iguais e um
 //        número positivo se o primeiro objeto for maior que o segundo.
-        if (this.saldo.compareTo(valor) >= 0){
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Solicitado saque de: R$ " + valor);
-            System.out.println("Você confirma essa transação? (s/n)");
-            String confirmacao = scanner.nextLine();
+        if (this.saldo.compareTo(valor) <= 0) {
 
-            if (confirmacao.equalsIgnoreCase("s")){
-                BigDecimal novoSaldo = this.saldo.subtract(valor);
-                this.saldo = novoSaldo;
-                System.out.println("Saque de R$ " + valor + " realizado com sucesso");
-                return valor;
-            }else if (confirmacao.equalsIgnoreCase("n")){
+            throw new SaldoInsuficienteException("Saldo: " + this.saldo + ", Valor: " + valor);
+
+        }
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Solicitado saque de: R$ " + valor);
+        System.out.println("Você confirma essa transação? (s/n)");
+        String confirmacao = scanner.nextLine();
+//
+        if (confirmacao.equalsIgnoreCase("s")){
+            BigDecimal novoSaldo = this.saldo.subtract(valor);
+            this.saldo = novoSaldo;
+            System.out.println("Saque de R$ " + valor + " realizado com sucesso");
+        }else if (confirmacao.equalsIgnoreCase("n")){
                 System.out.println(" Saque cancelado pelo usuário");
-                return BigDecimal.ZERO;
             }
-        }  else {
-            System.out.println("Saldo insuficiente");
-            return BigDecimal.ZERO;
-        }
-        return this.saldo;
     }
 
-    public BigDecimal transfere(BigDecimal valor, Conta destino){
+    public void transfere(BigDecimal valor, Conta destino) throws SaldoInsuficienteException{
 
-        if(this.saldo.compareTo(valor) >=0){
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Solicitada transferência de R$: " + valor + " para a conta " + destino);
-            System.out.println("Você confirma essa transação? (s/n)");
-            String confirmacao = scanner.nextLine();
-
-            if(confirmacao.equalsIgnoreCase("s")){
-                BigDecimal novoSaldo = this.saldo.subtract(valor);
-                this.saldo = novoSaldo;
-                destino.deposita(valor);
-                System.out.println("Transferência realizada com sucesso");
-                return valor;
-            } else if (confirmacao.equalsIgnoreCase("n")) {
-                System.out.println("Operação cancelada pelo usuário");
-            }
-
-        }else{
-            System.out.println("O valor socilitado não pode ser transferido");
+        this.saca(valor);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Solicitada transferência de R$: " + valor + " para a conta " + destino);
+        System.out.println("Você confirma essa transação? (s/n)");
+        String confirmacao = scanner.nextLine();
+        if (confirmacao.equalsIgnoreCase("s")) {
+            BigDecimal novoSaldo = this.saldo.subtract(valor);
+            this.saldo = novoSaldo;
+            destino.deposita(valor);
+            System.out.println("Transferência realizada com sucesso");
+        } else if (confirmacao.equalsIgnoreCase("n")) {
+            System.out.println("Operação cancelada pelo usuário");
         }
-        return valor;
     }
-
-    //    Criado para setar um valor negativo, mas após tornar a conta privada não há mais necessidade de uso
-//    public void setSaldo(BigDecimal valor){
-//        this.saldo = valor;
-//    }
-    public int getNumero(){
+    public int getNumero() {
         return this.numero;
     }
 
-    public int setNumero(int numero){
+    public int setNumero(int numero) {
 
-        if (numero <= 0){
+        if (numero <= 0) {
             System.out.println("Este número de contanão é válido!");
             return numero;
         }
@@ -113,7 +99,7 @@ public abstract class Conta {
     }
 
     public void setAgencia(int agencia) {
-        if(agencia <= 0){
+        if (agencia <= 0) {
             System.out.println("Este número de agência não é válido!");
             return;
         }
@@ -128,8 +114,9 @@ public abstract class Conta {
         return titular;
     }
 
-    public static int getNumeroDeContas(){
+    public static int getNumeroDeContas() {
         return Conta.numeroDeContas;
     }
-}
 
+
+}
