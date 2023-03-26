@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,4 +27,22 @@ public class Curso {
     public String getInstrutor() {
         return instrutor;
     }
+
+    public int getTempoTotal(){
+        int tempoTotal = 0;
+        for (Aula aula: aulas
+             ) {
+            tempoTotal += aula.getTempo();
+        }
+        return tempoTotal;
+    }
+
+    @Override
+    public String toString() {
+        return "[Curso: " + nome + ", tempo total: " + this.getTempoTotal() + ","
+                + "aulas: " + this.aulas + "]";
+
+    }
+
+
 }
